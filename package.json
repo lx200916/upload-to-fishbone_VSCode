@@ -10,69 +10,49 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:upload-to-fishbone.create_private",
-		"onCommand:upload-to-fishbone.create_public",
-		"onCommand:upload-to-fishbone.create_public_snippet",
-		"onCommand:upload-to-fishbone.create_private_snippet"
+		"onCommand:upload-to-fishbone.create_paste",
+		"onCommand:upload-to-fishbone.create_paste_snippet"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "upload-to-fishbone.create_private",
-				"title": "Create Private Paste"
+				"command": "upload-to-fishbone.create_paste",
+				"title": "Create Paste"
 			},
 			{
-				"command": "upload-to-fishbone.create_public",
-				"title": "Create Public Paste"
-			},
-			{
-				"command": "upload-to-fishbone.create_private_snippet",
-				"title": "Create Private Snippet(Selected text)"
-			},
-			{
-				"command": "upload-to-fishbone.create_public_snippet",
-				"title": "Create Public Snippet(Selected text)"
+				"command": "upload-to-fishbone.create_paste_snippet",
+				"title": "Create Snippet(Selected text)"
 			}
+			
 		],
 		"menus": {
 			"commandPalette": [
 				{
-					"command": "upload-to-fishbone.create_public_snippet",
-					"when": "editorHasSelection == true"
+					"command": "upload-to-fishbone.create_paste"
 				},
 				{
-					"command": "upload-to-fishbone.create_private_snippet",
+					"command": "upload-to-fishbone.create_paste_snippet",
 					"when": "editorHasSelection == true"
 				}
 			],
 			"explorer/context": [
 				{
-					"command": "upload-to-fishbone.create_public",
-					"when": "!explorerResourceIsFolder"
-				},
-				{
-					"command": "upload-to-fishbone.create_private",
+					"command": "upload-to-fishbone.create_paste",
 					"when": "!explorerResourceIsFolder"
 				}
 			],
 			"editor/context": [
 				{
-					"command": "upload-to-fishbone.create_public_snippet",
+					"command": "upload-to-fishbone.create_paste_snippet",
 					"when": "editorHasSelection == true"
 				},
+				
 				{
-					"command": "upload-to-fishbone.create_private_snippet",
-					"when": "editorHasSelection == true"
-				},
-				{
-					"command": "upload-to-fishbone.create_public",
-					"when": "!editorHasSelection"
-				},
-				{
-					"command": "upload-to-fishbone.create_private",
+					"command": "upload-to-fishbone.create_paste",
 					"when": "!editorHasSelection"
 				}
+				
 			]
 		}
 	},

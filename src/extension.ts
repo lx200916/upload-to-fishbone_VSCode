@@ -64,7 +64,74 @@ export function activate(context: vscode.ExtensionContext) {
 			const selection = editor.selection;
 			const text = document.getText(selection);
 			console.log(text);
+			let step=1;
 			const lang = editor.document.languageId;
+			const quickPick = vscode.window.createQuickPick();
+			quickPick.step=1;
+			quickPick.totalSteps=2;
+		
+			// quickPick.onDidTriggerButton(e => {
+			// 	if (e === vscode.QuickInputButtons.Back) {
+			// 		step--;}
+			// 	});
+				quickPick.onDidChangeSelection(e=>{
+					console.log(e);
+					if(e[0].label==='Create Private Paste'){
+						quickPick.step=1;
+						quickPick.totalSteps=2;
+						step++;
+						
+						const input=vscode.window.createInputBox();
+						input.step=step;
+						input.totalSteps=2;
+						input.prompt='Input Paste Password';
+						input.onDidAccept(e=>{
+						if(input.value){
+							console.log(input.value);
+						}
+						});
+						input.buttons=[
+							vscode.QuickInputButtons.Back
+						];
+						input.onDidTriggerButton(e => {
+							if (e === vscode.QuickInputButtons.Back) {
+								quickPick.show();
+								}
+							});
+						// quickPick.hide();
+						input.show();
+
+
+
+						
+					}else if (e[0].label==='Create Public Paste'){
+						console.log(e);
+						quickPick.dispose();
+					}else{
+						render(context.extensionUri,{
+							content:text,
+							language:lang?lang:'plaintext',
+							type:PasteType.public,
+		
+						});
+						quickPick.dispose();
+					}
+				}
+				);
+
+			quickPick.items = [{label:"Create Private Paste",},{label:"Create Public Paste"},{label:"Advance Paste",detail:"Show more detailed Options."},];
+			quickPick.onDidChangeSelection(e=>{
+			console.log(e);
+
+			});
+			
+			
+			quickPick.onDidHide(()=>{
+				quickPick.dispose();
+			});
+			quickPick.show();
+			
+
 		}
 	});
 
