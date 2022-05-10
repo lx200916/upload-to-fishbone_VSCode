@@ -24,7 +24,6 @@
 				"command": "upload-to-fishbone.create_paste_snippet",
 				"title": "Create Snippet(Selected text)"
 			}
-			
 		],
 		"menus": {
 			"commandPalette": [
@@ -47,12 +46,10 @@
 					"command": "upload-to-fishbone.create_paste_snippet",
 					"when": "editorHasSelection == true"
 				},
-				
 				{
 					"command": "upload-to-fishbone.create_paste",
 					"when": "!editorHasSelection"
 				}
-				
 			]
 		}
 	},
@@ -84,6 +81,10 @@
 		"webpack-cli": "^4.9.2"
 	},
 	"dependencies": {
-		"@vscode/webview-ui-toolkit": "^1.0.0"
+		"@vscode/webview-ui-toolkit": "^1.0.0",
+		"axios": "^0.27.2",
+		"crypto-js": "^4.1.1",
+		"protobufjs": "^6.10.2"
+
 	}
 }
